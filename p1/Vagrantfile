@@ -19,23 +19,27 @@ Vagrant.configure("2") do |config|
 #   end
 
   config.vm.define "alboumedS" do |alboumedS|
-	alboumedS.vm.box = "hashicorp/bionic64"
-	alboumedS.vm.hostname = "alboumedS"
-	alboumedS.vm.network "private_network", ip: "192.168.56.110"
-	alboumedS.vm.provision "shell", path: "scripts/server-install.sh"
-	alboumedS.vm.provider "virtualbox" do |v|
-		v.name = "alboumedS"
-	end
+    alboumedS.vm.box = "ubuntu/jammy64"
+    alboumedS.vm.hostname = "alboumedS"
+    alboumedS.vm.network "private_network", ip: "192.168.56.110"
+    alboumedS.vm.provision "shell", path: "scripts/server-install.sh"
+    alboumedS.vm.provider "virtualbox" do |v|
+      v.name = "alboumedS"
+      v.memory = 1024
+      v.cpus = 2
+    end
   end
 
   config.vm.define "alboumedSW" do |alboumedSW|
-	alboumedSW.vm.box = "hashicorp/bionic64"
-	alboumedSW.vm.hostname = "alboumedSW"
-	alboumedSW.vm.network "private_network", ip: "192.168.56.111"
-	alboumedSW.vm.provision "shell", path: "scripts/worker-install.sh"
-	alboumedSW.vm.provider "virtualbox" do |v|
-		v.name = "alboumedSW"
-	end
+    alboumedSW.vm.box = "ubuntu/jammy64"
+    alboumedSW.vm.hostname = "alboumedSW"
+    alboumedSW.vm.network "private_network", ip: "192.168.56.111"
+    alboumedSW.vm.provision "shell", path: "scripts/worker-install.sh"
+    alboumedSW.vm.provider "virtualbox" do |v|
+      v.name = "alboumedSW"
+      v.memory = 1024
+      v.cpus = 2
+    end
   end
 
   # Disable automatic box update checking. If you disable this, then
@@ -61,7 +65,7 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  config.vm.network "public_network"
+  # config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
