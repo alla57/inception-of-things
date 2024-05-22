@@ -1,9 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ing-iot
-  # annotations:
-  #   traefik.ingress.kubernetes.io/router.priority: "4200"
+  name: hello-ingress
 spec:
   rules:
     - host: app1.com
@@ -14,5 +12,25 @@ spec:
             backend:
               service:
                 name: app-one
+                port:
+                  number: 80
+    - host: app2.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-two
+                port:
+                  number: 80
+    - host: app3.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-three
                 port:
                   number: 80
